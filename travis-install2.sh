@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 TARPAULIN_VERSION=${TARPAULIN_VERSION:-0.6.6-1}
 RUST_VERSION=$(rustc -V | cut -d' ' -f 2)
 
