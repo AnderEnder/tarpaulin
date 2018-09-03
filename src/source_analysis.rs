@@ -1828,14 +1828,14 @@ mod tests {
         };
         let parser = parse_file(ctx.file_contents).unwrap();
         process_items(&parser.items, &ctx, &mut lines);
-        assert!(lines.ignore.contains(&Lines::Line(1)));
-        assert!(lines.ignore.contains(&Lines::Line(2)));
-        assert!(lines.ignore.contains(&Lines::Line(3)));
+        assert!(lines.cover.contains(&Lines::Line(1)));
+        assert!(lines.cover.contains(&Lines::Line(2)));
+        assert!(lines.cover.contains(&Lines::Line(3)));
         // expect
-        assert!(lines.ignore.contains(&Lines::Line(4)));
-        assert!(lines.ignore.contains(&Lines::Line(5)));
-        assert!(lines.ignore.contains(&Lines::Line(6)));
-        assert!(lines.ignore.contains(&Lines::Line(7)));
+        assert!(lines.cover.contains(&Lines::Line(4)));
+        assert!(lines.cover.contains(&Lines::Line(5)));
+        assert!(lines.cover.contains(&Lines::Line(6)));
+        assert!(lines.cover.contains(&Lines::Line(7)));
     }
 
 }
