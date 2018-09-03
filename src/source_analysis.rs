@@ -1806,4 +1806,36 @@ mod tests {
         assert!(lines.ignore.contains(&Lines::Line(7)));
     }
 
+    #[test]
+    fn structure_in_function() {
+        let config = Config::default();
+        let mut lines = LineAnalysis::new();
+        let ctx = Context {
+            config: &config,
+            file_contents: "
+            fn filter(&self, object: &str) -> bool {
+                self.matches_with(
+                    object,
+                    &MatchOptions {
+                        case_sensitive: false,
+                        require_literal_separator: false,
+                        require_literal_leading_dot: false,
+                    }
+                )
+            }",
+            file: Path::new(""),
+            ignore_mods: RefCell::new(HashSet::new()),
+        };
+        let parser = parse_file(ctx.file_contents).unwrap();
+        process_items(&parser.items, &ctx, &mut lines);
+        assert!(lines.ignore.contains(&Lines::Line(1)));
+        assert!(lines.ignore.contains(&Lines::Line(2)));
+        assert!(lines.ignore.contains(&Lines::Line(3)));
+        // expect
+        assert!(lines.ignore.contains(&Lines::Line(4)));
+        assert!(lines.ignore.contains(&Lines::Line(5)));
+        assert!(lines.ignore.contains(&Lines::Line(6)));
+        assert!(lines.ignore.contains(&Lines::Line(7)));
+    }
+
 }
