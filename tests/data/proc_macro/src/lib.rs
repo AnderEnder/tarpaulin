@@ -8,4 +8,13 @@ mod tests {
     fn blah() {
         assert_eq!(true, true, "testing");
     }
+
+    #[test]
+    fn blah_2() {
+        assert_eq!(
+            true,
+            true,
+            "testing"
+        );
+    }
 }
