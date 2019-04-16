@@ -50,8 +50,8 @@ fn func_all() {
     config.test_timeout = Duration::from_secs(60);
     let test_dir = env::current_dir()
         .unwrap()
-        .join("tests");
-        .join("data");
+        .join("tests")
+        .join("data")
         .join("func");
     config.manifest = test_dir.join("Cargo.toml");
     assert!(launch_tarpaulin(&config).is_ok());
