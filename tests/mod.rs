@@ -45,6 +45,19 @@ fn proc_macro_link() {
 }
 
 #[test]
+fn func_all() {
+    let mut config = Config::default();
+    config.test_timeout = Duration::from_secs(60);
+    let test_dir = env::current_dir()
+        .unwrap()
+        .join("tests");
+        .join("data");
+        .join("func");
+    config.manifest = test_dir.join("Cargo.toml");
+    assert!(launch_tarpaulin(&config).is_ok());
+}
+
+#[test]
 fn array_coverage() {
     check_percentage("arrays", 1.0f64, true);
 }
@@ -77,4 +90,9 @@ fn loops_expr_coverage() {
 #[test]
 fn loops_assigns_coverage() {
     check_percentage("assigns", 1.0f64, true);
+}
+
+#[test]
+fn func_coverage() {
+    check_percentage("func", 1.0f64, true);
 }
