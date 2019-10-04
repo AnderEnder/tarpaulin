@@ -7,7 +7,6 @@ on:
 
 jobs:
   release-crates:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -17,7 +16,6 @@ jobs:
           cargo publish --token ${{ secrets.CARGO_TOKEN }}
 
   release:
-    needs: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
